@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#111316">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Parrillas">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>Braseros y parrillas de varilla</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>:root{--bg:#f2f1ef;--panel:#fff;--ink:#16181b;--mute:#6b7076;--line:#e1dfdb;--acc:#e8470f;--acc2:#ff8a3d;--accink:#fff;--soft:#fdeadf;--chip:#eceae6;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d0e10;--panel:#17191c;--ink:#f3f1ee;--mute:#9a9fa5;--line:#2a2d31;--acc:#ff6a2b;--acc2:#ffb347;--accink:#14100d;--soft:#2a1a11;--chip:#222529}}
+:root[data-theme="dark"]{--bg:#0d0e10;--panel:#17191c;--ink:#f3f1ee;--mute:#9a9fa5;--line:#2a2d31;--acc:#ff6a2b;--acc2:#ffb347;--accink:#14100d;--soft:#2a1a11;--chip:#222529}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Archivo,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:860px;margin:0 auto;padding:12px 14px 110px}
+.hero{background:radial-gradient(120% 140% at 100% 0%,#ff6a2b55,transparent 55%),#111316;color:#f3f1ee;border-radius:24px;padding:26px 22px;margin-bottom:16px}
+.badge{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.14em;background:linear-gradient(90deg,var(--acc),var(--acc2));color:#14100d;padding:4px 10px;border-radius:99px}
+h1{font-size:clamp(30px,8vw,50px);font-weight:800;text-transform:uppercase;letter-spacing:-.02em;line-height:.98;margin:14px 0 8px}
+h1 em{font-style:normal;background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--mute);margin:0 0 12px}
+.sub{color:#b9bcc0;margin:0;max-width:46ch}.hint{color:var(--mute);font-size:14px}
+.tabs{position:fixed;left:0;right:0;bottom:0;z-index:10;display:flex;gap:6px;padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px));background:var(--panel);border-top:1px solid var(--line)}
+.tabs button{flex:1;font:inherit;font-size:12px;font-weight:700;cursor:pointer;background:none;color:var(--mute);border:0;border-radius:14px;padding:6px 4px;min-height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px}
+.tabs i{font-style:normal;font-size:20px;line-height:1}
+.tabs button[aria-selected="true"]{background:linear-gradient(135deg,var(--acc),var(--acc2));color:var(--accink)}
+@media(min-width:720px){.tabs{position:static;border:0;background:var(--chip);border-radius:99px;padding:5px;margin-bottom:16px;max-width:460px}.tabs button{flex-direction:row;gap:8px;font-size:14px;min-height:42px;border-radius:99px}main{padding-bottom:40px}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:18px;margin-bottom:14px}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+label{display:block;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--mute);margin-bottom:6px}
+input{width:100%;font:inherit;font-weight:700;font-size:20px;color:var(--ink);background:var(--chip);border:2px solid transparent;border-radius:14px;padding:8px 12px;min-height:48px;text-align:center}
+input:focus-visible,button:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.step{display:flex;gap:6px}.step input{min-width:0;flex:1}
+.step button{flex:0 0 48px;font:inherit;font-size:24px;font-weight:700;cursor:pointer;color:var(--ink);background:var(--chip);border:0;border-radius:14px}
+.step button:active{background:var(--acc);color:var(--accink)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:14px 12px}
+.stat b{display:block;font-size:clamp(22px,6vw,34px);font-weight:800;line-height:1.05;background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat span{font-size:12px;color:var(--mute);font-weight:600}
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:520px}
+th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--mute);padding:6px;border-bottom:1px solid var(--line)}
+td{padding:10px 6px;border-bottom:1px solid var(--line)}
+tfoot td{border:0}
+.n{text-align:right;white-space:nowrap}
+td input{font-size:16px;min-height:40px;text-align:right;max-width:130px}
+.tot{font-weight:800}
+.total{display:flex;justify-content:space-between;align-items:center;gap:12px;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#14100d;border-radius:18px;padding:16px 20px;margin-top:14px;font-weight:700}
+.total b{font-size:clamp(26px,7vw,38px);font-weight:800}
+.plano svg{width:100%;height:auto;max-width:640px;display:block;margin:0 auto}
+.plano .l{stroke:var(--ink);fill:none}.plano .a{stroke:var(--acc);fill:none}
+.plano .f{fill:var(--acc)}.plano text{fill:var(--mute);font:600 12px Archivo,system-ui,sans-serif}
+.plano .d{stroke-dasharray:6 4}
+ol{list-style:none;counter-reset:s;padding:0;margin:0;display:grid;gap:10px}
+li{counter-increment:s;display:flex;gap:14px;align-items:flex-start;background:var(--chip);border-radius:16px;padding:12px 14px}
+li::before{content:counter(s);flex:0 0 32px;height:32px;border-radius:50%;display:grid;place-items:center;font-weight:800;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#14100d}
+@media print{.tabs{display:none}body{background:#fff;color:#000}.tab[hidden]{display:block!important}}
+</style>
+</head>
+<body>
+<main>
+  <header class="hero">
+    <span class="badge">TALLER · SOLDADURA</span>
+    <h1>Braseros y<br><em>parrillas</em> de varilla</h1>
+    <p class="sub">Elegí las medidas, mirá el plano y la lista de corte, y calculá cuánto te sale.</p>
+  </header>
+  <nav class="tabs" role="tablist">
+    <button role="tab" data-tab="parrilla" aria-selected="true"><i>▦</i><span>Parrilla</span></button>
+    <button role="tab" data-tab="brasero" aria-selected="false"><i>◉</i><span>Brasero</span></button>
+    <button role="tab" data-tab="materiales" aria-selected="false"><i>$</i><span>Costos</span></button>
+  </nav>
+
+  <section id="tab-parrilla" class="tab">
+    <div class="panel fields">
+      <div><label for="pA">Ancho A (cm)</label><input id="pA" type="number" value="60" min="10"></div>
+      <div><label for="pB">Fondo B (cm)</label><input id="pB" type="number" value="40" min="10"></div>
+      <div><label for="pS">Separación de barras (cm)</label><input id="pS" type="number" value="3" min="1" step="0.5"></div>
+      <div><label for="pH">Alto de patas (cm, 0 = sin patas)</label><input id="pH" type="number" value="15" min="0"></div>
+    </div>
+    <div class="stats" id="pStats"></div>
+    <div class="panel"><h2>Plano</h2><div id="pPlano" class="plano"></div></div>
+    <div class="panel"><h2>Lista de corte</h2><div class="scroll"><table id="pCorte"></table></div></div>
+    <div class="panel"><h2>Cómo hacerla</h2><ol id="pPasos"></ol></div>
+  </section>
+
+  <section id="tab-brasero" class="tab" hidden>
+    <div class="panel fields">
+      <div><label for="bD">Diámetro D (cm)</label><input id="bD" type="number" value="50" min="20"></div>
+      <div><label for="bH">Altura de la cesta H (cm)</label><input id="bH" type="number" value="30" min="10"></div>
+      <div><label for="bS">Separación de verticales (cm)</label><input id="bS" type="number" value="6" min="2" step="0.5"></div>
+      <div><label for="bL">Alto de patas (cm)</label><input id="bL" type="number" value="20" min="5"></div>
+    </div>
+    <div class="stats" id="bStats"></div>
+    <div class="panel"><h2>Plano</h2><div id="bPlano" class="plano"></div></div>
+    <div class="panel"><h2>Lista de corte</h2><div class="scroll"><table id="bCorte"></table></div></div>
+    <div class="panel"><h2>Cómo hacerlo</h2><ol id="bPasos"></ol></div>
+  </section>
+
+  <section id="tab-materiales" class="tab" hidden>
+    <div class="panel fields">
+      <div><label for="mP">Parrillas a fabricar</label><input id="mP" type="number" value="1" min="0"></div>
+      <div><label for="mB">Braseros a fabricar</label><input id="mB" type="number" value="1" min="0"></div>
+      <div><label for="mW">Desperdicio de cortes (%)</label><input id="mW" type="number" value="10" min="0"></div>
+    </div>
+    <div class="panel">
+      <h2>Materiales</h2>
+      <p class="hint">Escribí cuánto cuesta 1 metro de cada varilla. Los metros salen de las medidas que cargaste en las otras pestañas.</p>
+      <div class="scroll"><table id="mTabla">
+        <thead><tr><th>Material</th><th class="n">Parrillas (m)</th><th class="n">Braseros (m)</th><th class="n">Total con desperdicio (m)</th><th class="n">Barras de 12 m</th><th class="n">Precio de 1 metro ($)</th><th class="n">Subtotal ($)</th></tr></thead>
+        <tbody>
+        <tr data-d="8"><td>Varilla Ø 8 mm</td><td class="n" data-c="p"></td><td class="n" data-c="b"></td><td class="n" data-c="t"></td><td class="n" data-c="r"></td><td class="n"><input type="number" min="0" step="any" data-price="8" aria-label="Precio del metro de varilla 8 mm"></td><td class="n tot" data-c="s"></td></tr>
+        <tr data-d="10"><td>Varilla Ø 10 mm</td><td class="n" data-c="p"></td><td class="n" data-c="b"></td><td class="n" data-c="t"></td><td class="n" data-c="r"></td><td class="n"><input type="number" min="0" step="any" data-price="10" aria-label="Precio del metro de varilla 10 mm"></td><td class="n tot" data-c="s"></td></tr>
+        <tr data-d="12"><td>Varilla Ø 12 mm</td><td class="n" data-c="p"></td><td class="n" data-c="b"></td><td class="n" data-c="t"></td><td class="n" data-c="r"></td><td class="n"><input type="number" min="0" step="any" data-price="12" aria-label="Precio del metro de varilla 12 mm"></td><td class="n tot" data-c="s"></td></tr>
+        </tbody>
+      </table></div>
+      <div class="total"><span>Costo total de materiales</span><b id="mTotal">$ 0</b></div>
+      <p class="hint">No incluye soldadura, discos de corte ni pintura.</p>
+    </div>
+  </section>
+</main>
+<script>const $ = s => document.querySelector(s);
+const fmt = n => n.toLocaleString("es-AR", { maximumFractionDigits: 2 });
+const money = n => "$ " + n.toLocaleString("es-AR", { maximumFractionDigits: 2 });
+const num = id => Math.max(0, parseFloat($("#" + id).value) || 0);
+const KG = { 8: .395, 10: .617, 12: .888 };
+const KEY = "brasero-parrilla-v1";
+
+/* ---------- Modelos: devuelven la lista de corte (cm) ---------- */
+function parrilla() {
+  const A = num("pA"), B = num("pB"), S = Math.max(1, num("pS")), H = num("pH");
+  const n = Math.max(0, Math.ceil(A / S) - 1);
+  const cuts = [
+    { p: "Marco, lados A", q: 2, l: A, d: 10 },
+    { p: "Marco, lados B", q: 2, l: B, d: 10 },
+    { p: "Barras de la parrilla", q: n, l: B, d: 8 },
+    { p: "Refuerzo inferior central", q: 1, l: A, d: 10 }
+  ];
+  if (H > 0) cuts.push({ p: "Patas", q: 4, l: H, d: 10 });
+  return { A, B, H, n, sp: A / (n + 1), cuts };
+}
+
+function brasero() {
+  const D = num("bD"), H = num("bH"), S = Math.max(1, num("bS")), L = num("bL"), R = D / 2;
+  const n = Math.ceil(Math.PI * D / S);
+  const chords = [];
+  for (let x = -R + 4; x < R - 1; x += 4) chords.push(2 * Math.sqrt(R * R - x * x));
+  const avg = chords.length ? chords.reduce((a, b) => a + b, 0) / chords.length : 0;
+  const cuts = [
+    { p: "Aros (superior e inferior)", q: 2, l: Math.PI * D, d: 10 },
+    { p: "Varillas verticales", q: n, l: H, d: 8 },
+    { p: "Varillas del fondo (largo promedio)", q: chords.length, l: avg, d: 8 },
+    { p: "Patas", q: 3, l: L, d: 12 },
+    { p: "Asas", q: 2, l: 30, d: 10 }
+  ];
+  return { D, H, L, R, n, chords, cuts };
+}
+
+/* ---------- Instrucciones ---------- */
+const pasosParrilla = g => [
+  `Cortá las varillas según la lista de corte. Usá una amoladora con disco de corte y limá las rebabas.`,
+  `Armá el marco rectangular de ${fmt(g.A)} × ${fmt(g.B)} cm con las varillas de Ø 10 mm. Verificá que las diagonales midan lo mismo para asegurar la escuadra y punteá las cuatro esquinas.`,
+  `Marcá sobre los dos lados A la posición de cada barra, cada ${fmt(g.sp)} cm. Hacé una marca igual en ambos lados para que queden paralelas.`,
+  `Apoyá las ${g.n} barras de Ø 8 mm sobre el marco, en las marcas, y punteá cada extremo antes de soldar a fondo.`,
+  `Soldá el refuerzo central de Ø 10 mm por debajo de las barras, cruzado, para que no se deformen con el calor.`,
+  g.H > 0 ? `Soldá las 4 patas de ${fmt(g.H)} cm en las esquinas del marco, bien verticales, y apoyá la parrilla del revés sobre una superficie plana para nivelarlas.` : `Como no lleva patas, apoyá la parrilla sobre soportes o ladrillos al usarla.`,
+  `Terminá las soldaduras con cepillo de acero. Para el primer uso, curá la parrilla con aceite y calor suave. No uses pintura común: solo pintura para altas temperaturas.`
+];
+const pasosBrasero = g => [
+  `Cortá las varillas según la lista de corte. Los aros se hacen con varilla de Ø 10 mm: curvala sobre un molde o un caño de ${fmt(g.D)} cm de diámetro.`,
+  `Cerrá cada aro con una soldadura a tope y verificá que midan ${fmt(g.D)} cm de diámetro.`,
+  `Marcá en ambos aros ${g.n} puntos a la misma distancia entre sí (cada ${fmt(Math.PI * g.D / g.n)} cm aprox.). Dividí primero en 4 y luego en partes iguales.`,
+  `Soldá las ${g.n} varillas verticales de Ø 8 mm entre los dos aros, de ${fmt(g.H)} cm de alto. Empezá por 4 varillas opuestas para fijar la forma.`,
+  `Soldá las varillas de Ø 8 mm del fondo en el aro inferior, cada 4 cm, cruzando de lado a lado, para que caigan las cenizas y entre aire.`,
+  `Soldá las 3 patas de Ø 12 mm, de ${fmt(g.L)} cm, al aro inferior, a 120° entre sí.`,
+  `Soldá las 2 asas de Ø 10 mm en el aro superior, enfrentadas, un poco hacia afuera para agarrarlas sin quemarte.`,
+  `Limpiá las soldaduras y pintá con pintura para altas temperaturas. Dejala curar con un fuego chico antes del primer uso.`
+];
+
+/* ---------- Plano (SVG) ---------- */
+function svgParrilla(g) {
+  const k = Math.min(380 / (g.A || 1), 200 / (g.B || 1)), w = g.A * k, h = g.B * k, m = 46, hs = g.H * k;
+  const W = w + 2 * m, y2 = m + h + 50, Ht = y2 + hs + 40;
+  let s = `<svg viewBox="0 0 ${W} ${Ht}" role="img" aria-label="Plano de la parrilla"><text x="${m}" y="16">VISTA SUPERIOR</text>`;
+  for (let i = 1; i <= g.n; i++) s += `<line class="l" stroke-width="1.5" x1="${m + i * g.sp * k}" y1="${m}" x2="${m + i * g.sp * k}" y2="${m + h}"/>`;
+  s += `<line class="a d" stroke-width="2" x1="${m}" y1="${m + h / 2}" x2="${m + w}" y2="${m + h / 2}"/>`;
+  s += `<rect class="l" stroke-width="3.5" x="${m}" y="${m}" width="${w}" height="${h}"/>`;
+  s += `<text x="${m + w / 2}" y="${m - 8}" text-anchor="middle">A = ${fmt(g.A)} cm</text>`;
+  s += `<text transform="translate(${m - 10} ${m + h / 2}) rotate(-90)" text-anchor="middle">B = ${fmt(g.B)} cm</text>`;
+  s += `<text x="${m + w + 4}" y="${m + h / 2 - 4}" font-size="10">refuerzo</text>`;
+  s += `<text x="${m}" y="${y2 - 14}">VISTA LATERAL</text><rect class="f" x="${m}" y="${y2}" width="${w}" height="5"/>`;
+  if (g.H > 0) {
+    for (const x of [m + 3, m + w - 3]) s += `<line class="l" stroke-width="3.5" x1="${x}" y1="${y2 + 5}" x2="${x}" y2="${y2 + 5 + hs}"/>`;
+    s += `<text x="${m + w / 2}" y="${y2 + hs / 2 + 8}" text-anchor="middle">patas = ${fmt(g.H)} cm</text>`;
+  }
+  return s + `</svg>`;
+}
+
+function svgBrasero(g) {
+  const k = Math.min(300 / (g.D || 1), 230 / ((g.H + g.L) || 1)), R = g.R * k, m = 40, cx = m + R;
+  const W = 2 * R + 2 * m, y2 = m + 2 * R + 50, Ht = y2 + (g.H + g.L) * k + 30, cy = m + R;
+  let s = `<svg viewBox="0 0 ${W} ${Ht}" role="img" aria-label="Plano del brasero"><text x="${m}" y="16">VISTA SUPERIOR</text>`;
+  s += `<defs><clipPath id="cp"><circle cx="${cx}" cy="${cy}" r="${R}"/></clipPath></defs>`;
+  for (const c of g.chords) { }
+  for (let x = -g.R + 4; x < g.R - 1; x += 4) s += `<line class="l" stroke-width="1.2" clip-path="url(#cp)" x1="${cx + x * k}" y1="${cy - R}" x2="${cx + x * k}" y2="${cy + R}"/>`;
+  s += `<circle class="l" stroke-width="3.5" cx="${cx}" cy="${cy}" r="${R}"/>`;
+  for (const a of [90, 210, 330]) s += `<circle class="f" cx="${cx + R * Math.cos(a * Math.PI / 180)}" cy="${cy - R * Math.sin(a * Math.PI / 180)}" r="5"/>`;
+  s += `<text x="${cx}" y="${m - 8}" text-anchor="middle">D = ${fmt(g.D)} cm</text>`;
+  const top = y2, hh = g.H * k;
+  s += `<text x="${m}" y="${y2 - 14}">VISTA LATERAL</text>`;
+  const nv = Math.min(g.n, 24);
+  for (let i = 0; i < nv; i++) { const x = cx + R * Math.cos(Math.PI * (i + .5) / nv); s += `<line class="l" stroke-width="1.2" x1="${x}" y1="${top}" x2="${x}" y2="${top + hh}"/>`; }
+  s += `<line class="l" stroke-width="3.5" x1="${cx - R}" y1="${top}" x2="${cx + R}" y2="${top}"/><line class="l" stroke-width="3.5" x1="${cx - R}" y1="${top + hh}" x2="${cx + R}" y2="${top + hh}"/>`;
+  for (const x of [cx - .87 * R, cx + .87 * R]) s += `<line class="l" stroke-width="4" x1="${x}" y1="${top + hh}" x2="${x}" y2="${top + hh + g.L * k}"/>`;
+  s += `<line class="a d" stroke-width="2" x1="${cx}" y1="${top + hh}" x2="${cx}" y2="${top + hh + g.L * k}"/>`;
+  s += `<text x="${cx + R + 6}" y="${top + hh / 2}">H = ${fmt(g.H)} cm</text><text x="${cx + R + 6}" y="${top + hh + g.L * k / 2}">patas = ${fmt(g.L)} cm</text>`;
+  return s + `</svg>`;
+}
+
+/* ---------- Render ---------- */
+const sumByD = cuts => { const t = { 8: 0, 10: 0, 12: 0 }; cuts.forEach(c => t[c.d] += c.q * c.l / 100); return t; };
+
+function tabla(el, cuts) {
+  const tot = cuts.reduce((a, c) => a + c.q * c.l / 100, 0);
+  el.innerHTML = `<thead><tr><th>Pieza</th><th class="n">Cant.</th><th class="n">Largo (cm)</th><th class="n">Varilla Ø (mm)</th><th class="n">Total (m)</th></tr></thead><tbody>` +
+    cuts.map(c => `<tr><td>${c.p}</td><td class="n">${c.q}</td><td class="n">${fmt(c.l)}</td><td class="n">${c.d}</td><td class="n">${fmt(c.q * c.l / 100)}</td></tr>`).join("") +
+    `</tbody><tfoot><tr><td colspan="4"><b>Total de varilla</b></td><td class="n tot">${fmt(tot)} m</td></tr></tfoot>`;
+}
+
+function stats(el, cuts) {
+  const m = cuts.reduce((a, c) => a + c.q * c.l / 100, 0), pz = cuts.reduce((a, c) => a + c.q, 0);
+  const kg = cuts.reduce((a, c) => a + c.q * c.l / 100 * KG[c.d], 0);
+  el.innerHTML = [[fmt(m), "metros de varilla"], [pz, "piezas a cortar"], [fmt(kg), "kg aprox."]]
+    .map(([v, l]) => `<div class="stat"><b>${v}</b><span>${l}</span></div>`).join("");
+}
+
+function steppers() {
+  document.querySelectorAll(".fields input").forEach(inp => {
+    const w = document.createElement("div"); w.className = "step";
+    inp.before(w);
+    const st = parseFloat(inp.step) || 1;
+    const mk = (t, d) => { const b = document.createElement("button"); b.type = "button"; b.textContent = t; b.setAttribute("aria-label", d > 0 ? "Sumar" : "Restar");
+      b.onclick = () => { const v = (parseFloat(inp.value) || 0) + d * st, mn = inp.min === "" ? 0 : +inp.min; inp.value = Math.max(mn, Math.round(v * 100) / 100); inp.dispatchEvent(new Event("input", { bubbles: true })); }; return b; };
+    w.append(mk("−", -1), inp, mk("+", 1));
+  });
+}
+
+function update() {
+  const p = parrilla(), b = brasero();
+  $("#pPlano").innerHTML = svgParrilla(p); tabla($("#pCorte"), p.cuts); stats($("#pStats"), p.cuts);
+  $("#pPasos").innerHTML = pasosParrilla(p).map(t => `<li>${t}</li>`).join("");
+  $("#bPlano").innerHTML = svgBrasero(b); tabla($("#bCorte"), b.cuts); stats($("#bStats"), b.cuts);
+  $("#bPasos").innerHTML = pasosBrasero(b).map(t => `<li>${t}</li>`).join("");
+
+  const np = num("mP"), nb = num("mB"), w = 1 + num("mW") / 100;
+  const sp = sumByD(p.cuts), sb = sumByD(b.cuts);
+  let total = 0;
+  document.querySelectorAll("#mTabla tbody tr").forEach(tr => {
+    const d = tr.dataset.d, mp = sp[d] * np, mb = sb[d] * nb, mt = (mp + mb) * w;
+    const price = parseFloat(tr.querySelector("input").value) || 0, sub = mt * price;
+    total += sub;
+    const set = (c, v) => tr.querySelector(`[data-c="${c}"]`).textContent = v;
+    set("p", fmt(mp)); set("b", fmt(mb)); set("t", fmt(mt)); set("r", mt ? Math.ceil(mt / 12) : 0); set("s", money(sub));
+  });
+  $("#mTotal").textContent = money(total);
+  save();
+}
+
+function save() {
+  try {
+    const d = {}; document.querySelectorAll("input").forEach(i => d[i.id || "price" + i.dataset.price] = i.value);
+    localStorage.setItem(KEY, JSON.stringify(d));
+  } catch (e) { }
+}
+function load() {
+  try {
+    const d = JSON.parse(localStorage.getItem(KEY) || "null"); if (!d) return;
+    document.querySelectorAll("input").forEach(i => { const k = i.id || "price" + i.dataset.price; if (d[k] !== undefined) i.value = d[k]; });
+  } catch (e) { }
+}
+
+document.querySelectorAll(".tabs button").forEach(btn => btn.addEventListener("click", () => {
+  document.querySelectorAll(".tabs button").forEach(b => b.setAttribute("aria-selected", b === btn));
+  document.querySelectorAll(".tab").forEach(t => t.hidden = t.id !== "tab-" + btn.dataset.tab);
+}));
+document.addEventListener("input", update);
+steppers(); load(); update();
+
+/* ---------- App instalable (PWA) ---------- */
+if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+  window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => { }));
+}
+</script>
+</body>
+</html>
