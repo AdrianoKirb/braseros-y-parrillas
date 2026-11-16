@@ -1,0 +1,16 @@
+{
+  "name": "Braseros y parrillas de varilla",
+  "short_name": "Parrillas",
+  "description": "Plano, lista de corte, instrucciones y costos para fabricar braseros y parrillas de varilla.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#111316",
+  "theme_color": "#111316",
+  "lang": "es-AR",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
